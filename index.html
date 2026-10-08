@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax-O-Naut | Your Trusted Tax & Accounting Partner</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js for AI Price Forecasting -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cinzel', 'Georgia', 'serif'],
+          },
+          colors: {
+            taxonaut: {
+              50: '#f0f4f8',
+              100: '#d9e2ec',
+              200: '#bcccdc',
+              300: '#9fb3c8',
+              400: '#627d98',
+              500: '#334e68',
+              600: '#243b53',
+              700: '#1b3a5b',
+              800: '#0f2445',
+              900: '#0b192c',
+              crest: '#0e1f38'
+            },
+            accent: {
+              teal: '#0ea5e9',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e',
+              purple: '#8b5cf6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar for tables */
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 antialiased font-sans min-h-screen flex flex-col">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Authentic Circular Emblem Logo & Brand Title -->
+        <div class="flex items-center gap-3.5">
+          <div class="relative w-14 h-14 flex-shrink-0 cursor-pointer" onclick="switchTab('equity')" title="Tax-O-Naut - Your Trusted Tax & Accounting Partner">
+            <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-sm select-none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer concentric rings -->
+              <circle cx="150" cy="150" r="142" fill="#ffffff" stroke="#0e1f38" stroke-width="4.5"/>
+              <circle cx="150" cy="150" r="136" fill="none" stroke="#0e1f38" stroke-width="1.8"/>
+              <circle cx="150" cy="150" r="102" fill="none" stroke="#0e1f38" stroke-width="1.6"/>
+              
+              <!-- Curvature paths for text -->
+              <defs>
+                <path id="topArchPath" d="M 46,150 A 104,104 0 0,1 254,150" fill="none" />
+                <path id="bottomArchPath" d="M 262,150 A 114,114 0 0,1 38,150" fill="none" />
+              </defs>
+              
+              <!-- Top Arc Text: TAX-O-NAUT -->
+              <text font-family="'Cinzel', 'Times New Roman', serif" font-size="28" font-weight="700" fill="#0e1f38" letter-spacing="9">
+                <textPath href="#topArchPath" startOffset="50%" text-anchor="middle">
+                  TAX-O-NAUT
+                </textPath>
+              </text>
+              
+              <!-- Center Emblem: Letter O with inclined planetary rings -->
+              <g transform="translate(150, 142)">
+                <!-- Back half of ring -->
+                <path d="M -54,12 C -60,20 -38,32 0,32 C 38,32 60,20 54,12" fill="none" stroke="#0e1f38" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- Central Oval 'O' -->
+                <ellipse cx="0" cy="0" rx="26" ry="38" fill="#ffffff" stroke="#0e1f38" stroke-width="6.5"/>
+                <ellipse cx="0" cy="0" rx="16" ry="29" fill="#ffffff" stroke="#0e1f38" stroke-width="2.5"/>
+                
+                <!-- Front half of ring (inclined orbit) -->
+                <path d="M -58,16 C -62,-2 -25,-18 12,-18 C 36,-18 58,-8 58,2 C 58,12 30,25 -8,25 C -36,25 -58,20 -58,16 Z" fill="none" stroke="#0e1f38" stroke-width="4.2" transform="rotate(-18)"/>
+                
+                <!-- Horizontal flanking dashes and text: — TAX- -NAUT — -->
+                <text x="-64" y="6" font-family="'Cinzel', serif" font-size="17" font-weight="700" fill="#0e1f38" text-anchor="end">— TAX-</text>
+                <text x="64" y="6" font-family="'Cinzel', serif" font-size="17" font-weight="700" fill="#0e1f38" text-anchor="start">-NAUT —</text>
+              </g>
+              
+              <!-- Star Divider Bottom -->
+              <path d="M 150,212 L 152.5,217 L 157.5,217 L 153.5,220 L 155,225 L 150,222 L 145,225 L 146.5,220 L 142.5,217 L 147.5,217 Z" fill="#0e1f38"/>
+              <line x1="110" y1="218.5" x2="140" y2="218.5" stroke="#0e1f38" stroke-width="1.2"/>
+              <line x1="160" y1="218.5" x2="190" y2="218.5" stroke="#0e1f38" stroke-width="1.2"/>
+              
+              <!-- Bottom Arc Text: YOUR TRUSTED TAX & ACCOUNTING PARTNER -->
+              <text font-family="'Inter', sans-serif" font-size="10.8" font-weight="700" fill="#0e1f38" letter-spacing="2.2">
+                <textPath href="#bottomArchPath" startOffset="50%" text-anchor="middle">
+                  YOUR TRUSTED TAX &amp; ACCOUNTING PARTNER
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xl font-black tracking-tight text-taxonaut-crest font-serif">TAX-O-NAUT</span>
+              <span class="px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">Sec 112A Live</span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-semibold tracking-wide uppercase">Your Trusted Tax &amp; Accounting Partner</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden md:flex items-center space-x-1">
+          <button id="tab-btn-equity" onclick="switchTab('equity')" class="tab-link px-4 py-2 text-sm font-semibold text-taxonaut-700 border-b-2 border-taxonaut-700 flex items-center gap-2 transition-all">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            Equity Shares
+          </button>
+          <button id="tab-btn-mf" onclick="switchTab('mf')" class="tab-link px-4 py-2 text-sm font-semibold text-slate-500 hover:text-taxonaut-700 border-b-2 border-transparent hover:border-slate-300 flex items-center gap-2 transition-all">
+            <i data-lucide="pie-chart" class="w-4 h-4"></i>
+            Mutual Funds
+          </button>
+          <button id="tab-btn-ai" onclick="switchTab('ai')" class="tab-link px-4 py-2 text-sm font-semibold text-slate-500 hover:text-purple-700 border-b-2 border-transparent hover:border-purple-300 flex items-center gap-2 transition-all group">
+            <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 group-hover:scale-110 transition-transform"></i>
+            <span>AI Price Forecasting</span>
+            <span class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded font-bold shadow-sm">AI PRO</span>
+          </button>
+        </nav>
+
+        <!-- User Profile & Action -->
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2.5 text-right">
+            <div>
+              <p class="text-xs font-bold text-slate-800 leading-tight">CA Ashutosh Verma</p>
+              <p class="text-[10px] text-emerald-600 font-medium flex items-center justify-end gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> NSE/AMFI Connected
+              </p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-taxonaut-50 border border-taxonaut-200 flex items-center justify-center font-bold text-taxonaut-700 text-xs shadow-inner">
+              AV
+            </div>
+          </div>
+          <button onclick="showToast('Tax-O-Naut session active. Backup saved to browser cache.', 'info')" class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-rose-600 transition-colors py-1.5 px-2.5 rounded-lg border border-slate-200 hover:border-rose-200">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Sign out</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Sub-bar -->
+    <div class="md:hidden flex items-center justify-around border-t border-slate-100 bg-slate-50/80 py-2">
+      <button onclick="switchTab('equity')" id="mobile-tab-equity" class="text-xs font-semibold text-taxonaut-700 flex flex-col items-center gap-1">
+        <i data-lucide="layers" class="w-4 h-4"></i> Equity
+      </button>
+      <button onclick="switchTab('mf')" id="mobile-tab-mf" class="text-xs font-medium text-slate-500 flex flex-col items-center gap-1">
+        <i data-lucide="pie-chart" class="w-4 h-4"></i> Mutual Funds
+      </button>
+      <button onclick="switchTab('ai')" id="mobile-tab-ai" class="text-xs font-medium text-purple-600 flex flex-col items-center gap-1">
+        <i data-lucide="sparkles" class="w-4 h-4"></i> AI Forecast
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 translate-y-20 opacity-0 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl border text-sm max-w-sm"></div>
+
+    <!-- TAB 1: EQUITY SHARES PRICE REPORT -->
+    <div id="tab-content-equity" class="tab-pane space-y-6 block">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Equity Share Price Report</h1>
+        <p class="text-sm sm:text-base text-slate-500 mt-1 max-w-4xl">
+          Opening, closing, high and low on any date since 01-Apr-2000 for every NSE and BSE listed share, compared with today’s closing price.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- 1. SEARCH AND ADD CARD -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm hover:shadow transition-shadow">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-5 h-5 rounded-full bg-taxonaut-100 text-taxonaut-700 text-xs font-bold flex items-center justify-center">1</span>
+            <h2 class="text-xs font-bold tracking-wider uppercase text-slate-500">SEARCH AND ADD</h2>
+          </div>
+
+          <div class="relative mb-4">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </div>
+            <input type="text" id="equity-search-input" oninput="handleEquitySearch(this.value)" placeholder="Search any NSE / BSE script..." 
+              class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-taxonaut-500 transition-all font-medium text-slate-800 placeholder-slate-400">
+            
+            <div id="equity-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-slate-200 max-h-56 overflow-y-auto hidden z-30 divide-y divide-slate-100"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+            <div class="sm:col-span-4">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">SELECTED</label>
+              <div id="equity-selected-badge" class="px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs font-medium text-slate-500 truncate min-h-[38px] flex items-center">
+                Pick a script from search above
+              </div>
+            </div>
+
+            <div class="sm:col-span-3">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">EXCHANGE</label>
+              <select id="equity-exchange-select" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:ring-2 focus:ring-taxonaut-500 focus:outline-none h-[38px]">
+                <option value="NSE" selected>NSE</option>
+                <option value="BSE">BSE</option>
+              </select>
+            </div>
+
+            <div class="sm:col-span-3">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">AS ON DATE</label>
+              <input type="date" id="equity-date-input" value="2026-10-07" min="2000-04-01" class="w-full px-2.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:ring-2 focus:ring-taxonaut-500 focus:outline-none h-[38px]">
+            </div>
+
+            <div class="sm:col-span-2">
+              <button onclick="addEquityRowFromForm()" class="w-full h-[38px] bg-slate-700 hover:bg-slate-800 active:scale-95 text-white font-semibold text-xs rounded-xl flex items-center justify-center gap-1 shadow-sm transition-all">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. OR UPLOAD A LIST CARD -->
+        <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-xs font-bold tracking-wider uppercase text-slate-500">OR UPLOAD A LIST</h2>
+              <span class="text-[10px] text-slate-400 font-medium">Batch processing</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <label class="cursor-pointer flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-colors">
+                <i data-lucide="upload-cloud" class="w-4 h-4 text-taxonaut-700"></i>
+                <span>Upload Excel / CSV</span>
+                <input type="file" id="equity-csv-file" accept=".csv, .xlsx, .xls" class="hidden" onchange="handleEquityFileUpload(event)">
+              </label>
+
+              <button onclick="downloadSampleTemplate('equity')" class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-colors">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-600"></i>
+                <span>Download template</span>
+              </button>
+            </div>
+
+            <!-- Upload Format Guide -->
+            <div class="bg-slate-50/80 rounded-xl p-3 border border-slate-200/80 text-[11px]">
+              <div class="font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+                <span>UPLOAD FORMAT</span>
+                <span class="text-[10px] font-normal text-slate-400">Comma Separated (.csv)</span>
+              </div>
+              <div class="grid grid-cols-3 font-semibold text-slate-600 border-b border-slate-200 pb-1 mb-1">
+                <span>Script (NSE/BSE symbol)</span>
+                <span>Exchange (NSE or BSE)</span>
+                <span>Date (DD-MM-YYYY)</span>
+              </div>
+              <div class="font-mono text-slate-500 space-y-0.5 text-[10.5px]">
+                <div class="grid grid-cols-3"><span>RELIANCE</span><span>NSE</span><span>14-05-2003</span></div>
+                <div class="grid grid-cols-3"><span>TCS</span><span>BSE</span><span>25-08-2004</span></div>
+              </div>
+              <p class="text-[10px] text-slate-400 mt-2 leading-tight">
+                One row per share and date; the same share may repeat with different dates. Exchange defaults to NSE. Dates from 01-04-2000 onwards.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. REPORT TABLE & ACTION BAR -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-50/40">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-taxonaut-100 text-taxonaut-700 text-xs font-bold flex items-center justify-center">2</span>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600">REPORT</h3>
+            </div>
+            <p id="equity-stats-line" class="text-xs text-slate-500 font-medium mt-0.5">
+              1 line(s) · <span class="text-emerald-600 font-semibold">1 priced</span> · 0 not found
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            <button onclick="fetchEquityPrices()" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-taxonaut-700 hover:bg-taxonaut-800 active:scale-95 text-white text-xs font-bold rounded-xl shadow-sm transition-all">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              Get prices
+            </button>
+            <button onclick="exportToExcel('equity')" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl shadow-sm transition-all">
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-600"></i>
+              Excel
+            </button>
+            <button onclick="printOrExportPDF('equity')" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl shadow-sm transition-all">
+              <i data-lucide="printer" class="w-3.5 h-3.5 text-rose-600"></i>
+              PDF
+            </button>
+            <button onclick="clearEquityTable()" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-rose-50 border border-slate-200 hover:border-rose-200 text-slate-600 hover:text-rose-600 text-xs font-semibold rounded-xl transition-all">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto min-h-[200px]">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-[#0b192c] text-white uppercase text-[11px] font-semibold tracking-wider select-none">
+              <tr>
+                <th class="py-3.5 px-3 text-center w-12">#</th>
+                <th class="py-3.5 px-4 min-w-[170px]">Script</th>
+                <th class="py-3.5 px-3">Symbol</th>
+                <th class="py-3.5 px-3">Exchange</th>
+                <th class="py-3.5 px-3 min-w-[110px]">Date</th>
+                <th class="py-3.5 px-3 text-right">Opening</th>
+                <th class="py-3.5 px-3 text-right">Closing</th>
+                <th class="py-3.5 px-3 text-right">High</th>
+                <th class="py-3.5 px-3 text-right">Low</th>
+                <th class="py-3.5 px-3 text-right min-w-[110px]">Today's Closing</th>
+                <th class="py-3.5 px-3 text-right min-w-[160px]">Difference (Today - Closing)</th>
+                <th class="py-3.5 px-4 min-w-[180px]">Remarks</th>
+                <th class="py-3.5 px-3 text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="equity-table-body" class="divide-y divide-slate-100 font-medium">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-4 bg-slate-50/70 border-t border-slate-200 text-[11px] text-slate-500 leading-relaxed">
+          Prices are as traded on NSE/BSE. Where a split or bonus happened after your date, the difference is adjusted so it stays like-for-like. If the market was closed on your date, the previous trading date is used for reference only.
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: MUTUAL FUNDS NAV REPORT -->
+    <div id="tab-content-mf" class="tab-pane space-y-6 hidden">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Mutual Fund NAV Report</h1>
+        <p class="text-sm sm:text-base text-slate-500 mt-1 max-w-4xl">
+          Scheme NAV on any date since 01-Apr-2000 for every AMFI registered mutual fund, compared with today’s NAV.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-5 h-5 rounded-full bg-taxonaut-100 text-taxonaut-700 text-xs font-bold flex items-center justify-center">1</span>
+            <h2 class="text-xs font-bold tracking-wider uppercase text-slate-500">SEARCH AND ADD</h2>
+          </div>
+
+          <div class="relative mb-4">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </div>
+            <input type="text" id="mf-search-input" oninput="handleMfSearch(this.value)" placeholder="Search mutual fund scheme..." 
+              class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-taxonaut-500 font-medium placeholder-slate-400">
+            <div id="mf-suggestions" class="absolute left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-slate-200 max-h-56 overflow-y-auto hidden z-30 divide-y divide-slate-100"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+            <div class="sm:col-span-6">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">SELECTED</label>
+              <div id="mf-selected-badge" class="px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs font-medium text-slate-500 truncate min-h-[38px] flex items-center">
+                Pick a scheme from search above
+              </div>
+            </div>
+
+            <div class="sm:col-span-4">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">AS ON DATE</label>
+              <input type="date" id="mf-date-input" value="2018-01-31" min="2000-04-01" class="w-full px-2.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:ring-2 focus:ring-taxonaut-500 focus:outline-none h-[38px]">
+            </div>
+
+            <div class="sm:col-span-2">
+              <button onclick="addMfRowFromForm()" class="w-full h-[38px] bg-slate-700 hover:bg-slate-800 active:scale-95 text-white font-semibold text-xs rounded-xl flex items-center justify-center gap-1 shadow-sm transition-all">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-xs font-bold tracking-wider uppercase text-slate-500">OR UPLOAD A LIST</h2>
+              <span class="text-[10px] text-slate-400 font-medium">AMFI batch parse</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <label class="cursor-pointer flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-colors">
+                <i data-lucide="upload-cloud" class="w-4 h-4 text-taxonaut-700"></i>
+                <span>Upload Excel / CSV</span>
+                <input type="file" id="mf-csv-file" accept=".csv, .xlsx, .xls" class="hidden" onchange="handleMfFileUpload(event)">
+              </label>
+
+              <button onclick="downloadSampleTemplate('mf')" class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-colors">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-600"></i>
+                <span>Download template</span>
+              </button>
+            </div>
+
+            <div class="bg-slate-50/80 rounded-xl p-3 border border-slate-200/80 text-[11px]">
+              <div class="font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+                <span>UPLOAD FORMAT</span>
+                <span class="text-[10px] font-normal text-slate-400">AMFI Standard Code/Name</span>
+              </div>
+              <div class="grid grid-cols-2 font-semibold text-slate-600 border-b border-slate-200 pb-1 mb-1">
+                <span>Scheme Code or Name</span>
+                <span>Date (DD-MM-YYYY)</span>
+              </div>
+              <div class="font-mono text-slate-500 space-y-0.5 text-[10.5px]">
+                <div class="grid grid-cols-2"><span>101762</span><span>02-03-2015</span></div>
+                <div class="grid grid-cols-2"><span>HDFC Flexi Cap Fund Growth</span><span>01-04-2010</span></div>
+              </div>
+              <p class="text-[10px] text-slate-400 mt-2 leading-tight">
+                Use the AMFI scheme code, or the fund name (the closest match is picked). Dates from 01-04-2000 onwards.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-50/40">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-taxonaut-100 text-taxonaut-700 text-xs font-bold flex items-center justify-center">2</span>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600">REPORT</h3>
+            </div>
+            <p id="mf-stats-line" class="text-xs text-slate-500 font-medium mt-0.5">
+              0 line(s) · <span class="text-emerald-600 font-semibold">0 priced</span> · 0 not found
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            <button onclick="fetchMfPrices()" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-taxonaut-700 hover:bg-taxonaut-800 active:scale-95 text-white text-xs font-bold rounded-xl shadow-sm transition-all">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              Get NAVs
+            </button>
+            <button onclick="exportToExcel('mf')" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl shadow-sm transition-all">
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-600"></i>
+              Excel
+            </button>
+            <button onclick="printOrExportPDF('mf')" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl shadow-sm transition-all">
+              <i data-lucide="printer" class="w-3.5 h-3.5 text-rose-600"></i>
+              PDF
+            </button>
+            <button onclick="clearMfTable()" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-rose-50 border border-slate-200 hover:border-rose-200 text-slate-600 hover:text-rose-600 text-xs font-semibold rounded-xl transition-all">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto min-h-[200px]">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-[#0b192c] text-white uppercase text-[11px] font-semibold tracking-wider select-none">
+              <tr>
+                <th class="py-3.5 px-3 text-center w-12">#</th>
+                <th class="py-3.5 px-3">AMFI Code</th>
+                <th class="py-3.5 px-4 min-w-[200px]">Scheme Name</th>
+                <th class="py-3.5 px-3">Category</th>
+                <th class="py-3.5 px-3 min-w-[110px]">Date</th>
+                <th class="py-3.5 px-3 text-right">Historical NAV (₹)</th>
+                <th class="py-3.5 px-3 text-right min-w-[110px]">Today's NAV (₹)</th>
+                <th class="py-3.5 px-3 text-right min-w-[140px]">Gain / Loss (%)</th>
+                <th class="py-3.5 px-4 min-w-[180px]">Remarks</th>
+                <th class="py-3.5 px-3 text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="mf-table-body" class="divide-y divide-slate-100 font-medium"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: AI PRICE & NAV FORECASTING -->
+    <div id="tab-content-ai" class="tab-pane space-y-6 hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold mb-2">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Tax-O-Naut Neural Trajectory Simulator
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">AI Price Forecasting & Valuation</h1>
+          <p class="text-sm sm:text-base text-slate-500 mt-1 max-w-3xl">
+            Simulate future asset price corridors, projected capital gain tax brackets under Sec 112A, and discover optimal tax-loss harvesting dates.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold text-slate-500">Model:</span>
+          <span class="px-2.5 py-1 bg-taxonaut-crest text-emerald-400 font-mono text-xs rounded-lg font-bold shadow-inner">
+            TaxoNet-v4.2-IndianEquities
+          </span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Asset for AI Projection</label>
+            <select id="ai-asset-select" onchange="runAiSimulation()" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-purple-600 focus:outline-none">
+              <optgroup label="Equities">
+                <option value="ASHOKLEY" selected>Ashok Leyland Ltd (ASHOKLEY)</option>
+                <option value="RELIANCE">Reliance Industries (RELIANCE)</option>
+                <option value="TCS">Tata Consultancy Services (TCS)</option>
+                <option value="HDFCBANK">HDFC Bank Ltd (HDFCBANK)</option>
+                <option value="INFY">Infosys Ltd (INFY)</option>
+              </optgroup>
+              <optgroup label="Mutual Funds">
+                <option value="PPFC">Parag Parikh Flexi Cap Fund</option>
+                <option value="HDFCFLEXI">HDFC Flexi Cap Fund - Growth</option>
+                <option value="SBINIFTY">SBI Nifty 50 Index Fund</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Forecast Horizon</label>
+            <div class="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-xl">
+              <button onclick="setForecastHorizon('3M')" class="horizon-btn py-1.5 text-center text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900" data-horizon="3M">3M</button>
+              <button onclick="setForecastHorizon('6M')" class="horizon-btn py-1.5 text-center text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900" data-horizon="6M">6M</button>
+              <button onclick="setForecastHorizon('1Y')" class="horizon-btn py-1.5 text-center text-xs font-bold rounded-lg transition-all bg-white text-purple-700 shadow-sm" data-horizon="1Y">1Y</button>
+              <button onclick="setForecastHorizon('3Y')" class="horizon-btn py-1.5 text-center text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900" data-horizon="3Y">3Y</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Market Bias</label>
+              <span id="sentiment-label" class="text-xs font-extrabold text-emerald-600">Bullish (+6%)</span>
+            </div>
+            <input type="range" id="sentiment-slider" min="1" max="5" value="4" oninput="updateSentimentSlider(this.value)" class="w-full accent-purple-600 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-slate-400 mt-0.5">
+              <span>Bearish</span>
+              <span>Neutral</span>
+              <span>Aggressive</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-transparent mb-1.5">Trigger</label>
+            <button onclick="runAiSimulation()" class="w-full py-2.5 bg-gradient-to-r from-purple-700 via-indigo-700 to-taxonaut-700 hover:opacity-95 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 shadow-md shadow-purple-600/20 active:scale-95 transition-all">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Run AI Simulation
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm flex flex-col justify-between">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 id="chart-asset-title" class="font-bold text-slate-800 text-base">Ashok Leyland Ltd (ASHOKLEY)</h3>
+                <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600" id="chart-exchange-badge">NSE Listed</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">Solid line: Historical Actuals | Dashed: Neural Median | Shaded: 85% Confidence Interval</p>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-medium">
+              <div class="flex items-center gap-1.5"><span class="w-3 h-1 bg-taxonaut-crest rounded-full inline-block"></span><span class="text-slate-600">History</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-3 h-1 border-t-2 border-dashed border-purple-600 inline-block"></span><span class="text-purple-700 font-bold">AI Median</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-3 h-2 bg-purple-200/60 rounded inline-block"></span><span class="text-slate-500">Corridor</span></div>
+            </div>
+          </div>
+
+          <div class="relative w-full h-[320px]">
+            <canvas id="aiForecastChart"></canvas>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 pt-4 border-t border-slate-100 mt-4 text-center">
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div class="text-[10px] uppercase font-bold text-slate-400">Current Spot Price</div>
+              <div id="ai-metric-current" class="text-base font-extrabold text-slate-800">₹145.02</div>
+            </div>
+            <div class="bg-purple-50/70 p-2.5 rounded-xl border border-purple-100">
+              <div class="text-[10px] uppercase font-bold text-purple-700">Projected Target</div>
+              <div id="ai-metric-target" class="text-base font-extrabold text-purple-900">₹178.50</div>
+            </div>
+            <div class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100">
+              <div class="text-[10px] uppercase font-bold text-emerald-700">Projected Return</div>
+              <div id="ai-metric-cagr" class="text-base font-extrabold text-emerald-800">+23.1%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 space-y-4">
+          <div class="bg-gradient-to-br from-[#0b192c] to-[#1b3a5b] text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-sm tracking-wide">Tax-Smart Optimization</h4>
+            </div>
+
+            <div class="space-y-3 text-xs leading-relaxed">
+              <div class="p-3 bg-white/10 rounded-xl border border-white/10 backdrop-blur-sm">
+                <p class="font-semibold text-emerald-300 flex items-center justify-between">
+                  <span>Sec 112A LTCG Status</span>
+                  <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-[10px] text-emerald-300 font-mono">Grandfathered Jan-2018</span>
+                </p>
+                <p class="text-slate-300 text-[11px] mt-1" id="ai-tax-summary">
+                  Historical acquisition date qualifies for grandfathering. Grandfathered benchmark base: ₹149.20. Projected LTCG will harvest optimal gains in Q4.
+                </p>
+              </div>
+
+              <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                <span class="text-slate-300 font-medium">Rebalance Window:</span>
+                <span class="block text-slate-100 font-bold mt-0.5" id="ai-rebalance-window">Optimal: 15 Mar - 31 Mar (FY End)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500 flex items-center justify-between">
+              <span>Predictive Drivers</span>
+              <i data-lucide="sliders" class="w-3.5 h-3.5 text-slate-400"></i>
+            </h4>
+
+            <div class="space-y-2.5 text-xs">
+              <div>
+                <div class="flex justify-between text-slate-700 font-medium mb-1">
+                  <span>Earnings & Cash Flow Trajectory</span>
+                  <span class="font-bold text-emerald-600">Strong (84%)</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                  <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 84%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-medium mb-1">
+                  <span>Momentum & Technical Breakout</span>
+                  <span class="font-bold text-taxonaut-700">Neutral (62%)</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                  <div class="bg-taxonaut-700 h-1.5 rounded-full" style="width: 62%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-medium mb-1">
+                  <span>Macro Inflation & Rates</span>
+                  <span class="font-bold text-amber-600">Moderate (45%)</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                  <div class="bg-amber-500 h-1.5 rounded-full" style="width: 45%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Volatility Index:</span>
+              <span class="font-bold text-slate-800">18.4% (Medium Risk)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-auto py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-taxonaut-crest font-serif">TAX-O-NAUT</span>
+        <span>— Your Trusted Tax &amp; Accounting Partner. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Section 112A &amp; Section 55(2)(ac) Compliant</span>
+        <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+        <span class="hover:text-slate-600 cursor-pointer" onclick="showToast('NSE & BSE end-of-day quotes cache synchronized.', 'success')">Quotes Cache: Live</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Master Stocks Database matching your screenshots
+    const STOCK_DATABASE = [
+      { name: "ASHOK LEYLAND LTD", symbol: "ASHOKLEY", exchange: "NSE", basePrice: 145.02, histOpen: 152.91, histClose: 149.20, histHigh: 153.41, histLow: 148.64, remarks: "" },
+      { name: "RELIANCE INDUSTRIES LTD", symbol: "RELIANCE", exchange: "NSE", basePrice: 2980.50, histOpen: 940.20, histClose: 948.75, histHigh: 955.00, histLow: 938.10, remarks: "Bonus 1:1 adjusted" },
+      { name: "TATA CONSULTANCY SERVICES", symbol: "TCS", exchange: "BSE", basePrice: 4210.15, histOpen: 1510.00, histClose: 1525.60, histHigh: 1530.00, histLow: 1500.50, remarks: "Bonus 1:1 in 2018 accounted" },
+      { name: "HDFC BANK LIMITED", symbol: "HDFCBANK", exchange: "NSE", basePrice: 1640.80, histOpen: 990.10, histClose: 1002.30, histHigh: 1010.40, histLow: 988.50, remarks: "Split 1:2 on 20-Sep-2019" },
+      { name: "INFOSYS LIMITED", symbol: "INFY", exchange: "NSE", basePrice: 1890.25, histOpen: 560.40, histClose: 568.10, histHigh: 574.00, histLow: 558.00, remarks: "Bonus 1:1 in 2018" },
+      { name: "TATA MOTORS LIMITED", symbol: "TATAMOTORS", exchange: "NSE", basePrice: 990.40, histOpen: 390.15, histClose: 396.45, histHigh: 402.10, histLow: 388.00, remarks: "" }
+    ];
+
+    const MF_DATABASE = [
+      { code: "101762", name: "Parag Parikh Flexi Cap Fund - Direct Growth", category: "Flexi Cap", baseNav: 82.45, histNav: 24.15, remarks: "Equity Oriented (Sec 112A Applicable)" },
+      { code: "118989", name: "HDFC Flexi Cap Fund - Growth", category: "Flexi Cap", baseNav: 1850.20, histNav: 620.40, remarks: "Grandfathering eligible" },
+      { code: "119598", name: "SBI Nifty 50 Index Fund - Regular Growth", category: "Index Fund", baseNav: 220.15, histNav: 98.40, remarks: "Passive Benchmark Tracking" }
+    ];
+
+    // Seed state exactly matching screenshot #3
+    let equityList = [
+      {
+        id: 1,
+        name: "ASHOK LEYLAND LTD",
+        symbol: "ASHOKLEY",
+        exchange: "NSE",
+        date: "2026-10-07",
+        open: 152.91,
+        close: 149.20,
+        high: 153.41,
+        low: 148.64,
+        todayClose: 145.02,
+        isPriced: true,
+        remarks: ""
+      }
+    ];
+
+    let mfList = [];
+    let selectedEquityCandidate = null;
+    let selectedMfCandidate = null;
+    let currentForecastHorizon = '1Y';
+    let chartInstance = null;
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('block'));
+
+      ['equity', 'mf', 'ai'].forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (btn) {
+          if (t === tabId) {
+            btn.className = "tab-link px-4 py-2 text-sm font-semibold text-taxonaut-700 border-b-2 border-taxonaut-700 flex items-center gap-2 transition-all";
+          } else {
+            btn.className = "tab-link px-4 py-2 text-sm font-semibold text-slate-500 hover:text-taxonaut-700 border-b-2 border-transparent hover:border-slate-300 flex items-center gap-2 transition-all";
+          }
+        }
+      });
+
+      const targetPane = document.getElementById(`tab-content-${tabId}`);
+      if (targetPane) {
+        targetPane.classList.remove('hidden');
+        targetPane.classList.add('block');
+      }
+
+      if (tabId === 'ai') {
+        setTimeout(initAiChart, 50);
+      }
+      lucide.createIcons();
+    }
+
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.className = "fixed bottom-6 right-6 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl border text-sm max-w-sm pointer-events-auto ";
+      
+      let icon = 'info';
+      if (type === 'success') {
+        toast.className += "bg-emerald-950 text-emerald-50 border-emerald-700";
+        icon = 'check-circle';
+      } else if (type === 'error') {
+        toast.className += "bg-rose-950 text-rose-50 border-rose-700";
+        icon = 'alert-triangle';
+      } else {
+        toast.className += "bg-[#0b192c] text-white border-slate-700";
+        icon = 'info';
+      }
+
+      toast.innerHTML = `<i data-lucide="${icon}" class="w-5 h-5 flex-shrink-0"></i> <span>${message}</span>`;
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+
+    function handleEquitySearch(query) {
+      const dropdown = document.getElementById('equity-suggestions');
+      if (!query || query.trim().length === 0) {
+        dropdown.classList.add('hidden');
+        return;
+      }
+
+      const q = query.toLowerCase();
+      const filtered = STOCK_DATABASE.filter(s => 
+        s.name.toLowerCase().includes(q) || s.symbol.toLowerCase().includes(q)
+      );
+
+      if (filtered.length === 0) {
+        dropdown.innerHTML = `<div class="p-3 text-xs text-slate-400">No matching stocks found</div>`;
+      } else {
+        dropdown.innerHTML = filtered.map(item => `
+          <div onclick="selectEquityCandidate('${item.symbol}')" class="px-3.5 py-2.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between text-xs transition-colors">
+            <div>
+              <div class="font-bold text-slate-800">${item.name}</div>
+              <div class="text-[11px] text-slate-400 font-mono">${item.symbol} · ${item.exchange}</div>
+            </div>
+            <span class="text-slate-700 font-bold">₹${item.basePrice.toFixed(2)}</span>
+          </div>
+        `).join('');
+      }
+      dropdown.classList.remove('hidden');
+    }
+
+    function selectEquityCandidate(symbol) {
+      const stock = STOCK_DATABASE.find(s => s.symbol === symbol);
+      if (!stock) return;
+      selectedEquityCandidate = stock;
+      document.getElementById('equity-search-input').value = `${stock.name} (${stock.symbol})`;
+      document.getElementById('equity-selected-badge').innerHTML = `<span class="font-bold text-taxonaut-700">${stock.symbol}</span> - ${stock.name}`;
+      document.getElementById('equity-exchange-select').value = stock.exchange;
+      document.getElementById('equity-suggestions').classList.add('hidden');
+    }
+
+    function addEquityRowFromForm() {
+      if (!selectedEquityCandidate) {
+        const val = document.getElementById('equity-search-input').value;
+        if (!val) {
+          showToast('Please search and select a stock first.', 'error');
+          return;
+        }
+        selectedEquityCandidate = STOCK_DATABASE[0];
+      }
+
+      const ex = document.getElementById('equity-exchange-select').value;
+      const dateVal = document.getElementById('equity-date-input').value || '2026-10-07';
+
+      equityList.push({
+        id: Date.now(),
+        name: selectedEquityCandidate.name,
+        symbol: selectedEquityCandidate.symbol,
+        exchange: ex,
+        date: dateVal,
+        open: selectedEquityCandidate.histOpen,
+        close: selectedEquityCandidate.histClose,
+        high: selectedEquityCandidate.histHigh,
+        low: selectedEquityCandidate.histLow,
+        todayClose: selectedEquityCandidate.basePrice,
+        isPriced: true,
+        remarks: selectedEquityCandidate.remarks
+      });
+
+      renderEquityTable();
+      showToast(`Added ${selectedEquityCandidate.symbol} to report`, 'success');
+      document.getElementById('equity-search-input').value = '';
+      document.getElementById('equity-selected-badge').innerText = 'Pick a script from search above';
+      selectedEquityCandidate = null;
+    }
+
+    function renderEquityTable() {
+      const tbody = document.getElementById('equity-table-body');
+      tbody.innerHTML = '';
+
+      if (equityList.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="13" class="py-8 text-center text-slate-400">
+              <i data-lucide="inbox" class="w-8 h-8 mx-auto mb-2 text-slate-300"></i>
+              No shares in the list. Pick a script above or upload a CSV file.
+            </td>
+          </tr>
+        `;
+        document.getElementById('equity-stats-line').innerHTML = `0 line(s) · <span class="text-emerald-600 font-semibold">0 priced</span> · 0 not found`;
+        lucide.createIcons();
+        return;
+      }
+
+      let pricedCount = 0;
+
+      equityList.forEach((row, idx) => {
+        if (row.isPriced) pricedCount++;
+
+        const diff = (row.todayClose - row.close);
+        const diffPercent = ((diff / row.close) * 100);
+        const isNegative = diff < 0;
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50/80 transition-colors";
+        tr.innerHTML = `
+          <td class="py-3.5 px-3 text-center text-slate-400 font-mono">${idx + 1}</td>
+          <td class="py-3.5 px-4 font-bold text-slate-900">${row.name}</td>
+          <td class="py-3.5 px-3 font-semibold text-slate-600 font-mono">${row.symbol}</td>
+          <td class="py-3.5 px-3 font-semibold text-slate-700">${row.exchange}</td>
+          <td class="py-3.5 px-3 text-slate-600 font-mono">${formatDateDisplay(row.date)}</td>
+          <td class="py-3.5 px-3 text-right font-mono text-slate-700">${row.open ? row.open.toFixed(2) : '-'}</td>
+          <td class="py-3.5 px-3 text-right font-mono font-bold text-slate-800">${row.close ? row.close.toFixed(2) : '-'}</td>
+          <td class="py-3.5 px-3 text-right font-mono text-slate-600">${row.high ? row.high.toFixed(2) : '-'}</td>
+          <td class="py-3.5 px-3 text-right font-mono text-slate-600">${row.low ? row.low.toFixed(2) : '-'}</td>
+          <td class="py-3.5 px-3 text-right font-mono font-bold text-slate-900">${row.todayClose ? row.todayClose.toFixed(2) : '-'}</td>
+          <td class="py-3.5 px-3 text-right font-mono font-bold">
+            <span class="${isNegative ? 'text-rose-600' : 'text-emerald-600'}">
+              ${isNegative ? '' : '+'}${diff.toFixed(2)} <span class="text-[11px] font-normal font-sans ml-1 text-slate-400">${isNegative ? '' : '+'}${diffPercent.toFixed(2)}%</span>
+            </span>
+          </td>
+          <td class="py-3.5 px-4 text-slate-500 text-[11px]">${row.remarks || '-'}</td>
+          <td class="py-3.5 px-3 text-center">
+            <button onclick="removeEquityRow(${row.id})" class="p-1 hover:bg-rose-50 text-slate-300 hover:text-rose-600 rounded transition-colors" title="Delete">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('equity-stats-line').innerHTML = `
+        ${equityList.length} line(s) · <span class="text-emerald-600 font-semibold">${pricedCount} priced</span> · 0 not found
+      `;
+      lucide.createIcons();
+    }
+
+    function removeEquityRow(id) {
+      equityList = equityList.filter(item => item.id !== id);
+      renderEquityTable();
+      showToast('Row removed', 'info');
+    }
+
+    function clearEquityTable() {
+      if (equityList.length === 0) return;
+      equityList = [];
+      renderEquityTable();
+      showToast('Table cleared', 'info');
+    }
+
+    function fetchEquityPrices() {
+      showToast('Fetching latest NSE/BSE closing prices... Done.', 'success');
+      equityList.forEach(r => r.isPriced = true);
+      renderEquityTable();
+    }
+
+    function handleMfSearch(query) {
+      const dropdown = document.getElementById('mf-suggestions');
+      if (!query || query.trim().length === 0) {
+        dropdown.classList.add('hidden');
+        return;
+      }
+      const q = query.toLowerCase();
+      const filtered = MF_DATABASE.filter(m => 
+        m.name.toLowerCase().includes(q) || m.code.toLowerCase().includes(q)
+      );
+
+      if (filtered.length === 0) {
+        dropdown.innerHTML = `<div class="p-3 text-xs text-slate-400">No matching AMFI schemes found</div>`;
+      } else {
+        dropdown.innerHTML = filtered.map(item => `
+          <div onclick="selectMfCandidate('${item.code}')" class="px-3.5 py-2.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between text-xs transition-colors">
+            <div>
+              <div class="font-bold text-slate-800">${item.name}</div>
+              <div class="text-[11px] text-slate-400 font-mono">${item.code} · ${item.category}</div>
+            </div>
+            <span class="text-slate-700 font-bold">₹${item.baseNav.toFixed(2)}</span>
+          </div>
+        `).join('');
+      }
+      dropdown.classList.remove('hidden');
+    }
+
+    function selectMfCandidate(code) {
+      const mf = MF_DATABASE.find(m => m.code === code);
+      if (!mf) return;
+      selectedMfCandidate = mf;
+      document.getElementById('mf-search-input').value = `${mf.name}`;
+      document.getElementById('mf-selected-badge').innerHTML = `<span class="font-bold text-taxonaut-700">${mf.code}</span> - ${mf.name}`;
+      document.getElementById('mf-suggestions').classList.add('hidden');
+    }
+
+    function addMfRowFromForm() {
+      if (!selectedMfCandidate) {
+        const val = document.getElementById('mf-search-input').value;
+        if (!val) {
+          showToast('Please search and select a fund first.', 'error');
+          return;
+        }
+        selectedMfCandidate = MF_DATABASE[0];
+      }
+
+      const dateVal = document.getElementById('mf-date-input').value || '2018-01-31';
+
+      mfList.push({
+        id: Date.now(),
+        code: selectedMfCandidate.code,
+        name: selectedMfCandidate.name,
+        category: selectedMfCandidate.category,
+        date: dateVal,
+        histNav: selectedMfCandidate.histNav,
+        todayNav: selectedMfCandidate.baseNav,
+        isPriced: true,
+        remarks: selectedMfCandidate.remarks
+      });
+
+      renderMfTable();
+      showToast(`Added ${selectedMfCandidate.name}`, 'success');
+      document.getElementById('mf-search-input').value = '';
+      document.getElementById('mf-selected-badge').innerText = 'Pick a scheme from search above';
+      selectedMfCandidate = null;
+    }
+
+    function renderMfTable() {
+      const tbody = document.getElementById('mf-table-body');
+      tbody.innerHTML = '';
+
+      if (mfList.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="10" class="py-8 text-center text-slate-400">
+              <i data-lucide="inbox" class="w-8 h-8 mx-auto mb-2 text-slate-300"></i>
+              0 line(s). Pick a mutual fund above or upload a CSV file.
+            </td>
+          </tr>
+        `;
+        document.getElementById('mf-stats-line').innerHTML = `0 line(s) · <span class="text-emerald-600 font-semibold">0 priced</span> · 0 not found`;
+        lucide.createIcons();
+        return;
+      }
+
+      let pricedCount = 0;
+      mfList.forEach((row, idx) => {
+        if (row.isPriced) pricedCount++;
+        const diff = (row.todayNav - row.histNav);
+        const gainPercent = ((diff / row.histNav) * 100);
+        const isPositive = diff >= 0;
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50/80 transition-colors";
+        tr.innerHTML = `
+          <td class="py-3.5 px-3 text-center text-slate-400 font-mono">${idx + 1}</td>
+          <td class="py-3.5 px-3 font-mono font-semibold text-taxonaut-700">${row.code}</td>
+          <td class="py-3.5 px-4 font-bold text-slate-900">${row.name}</td>
+          <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700">${row.category}</span></td>
+          <td class="py-3.5 px-3 text-slate-600 font-mono">${formatDateDisplay(row.date)}</td>
+          <td class="py-3.5 px-3 text-right font-mono font-semibold text-slate-800">₹${row.histNav.toFixed(2)}</td>
+          <td class="py-3.5 px-3 text-right font-mono font-bold text-slate-900">₹${row.todayNav.toFixed(2)}</td>
+          <td class="py-3.5 px-3 text-right font-mono font-semibold">
+            <span class="${isPositive ? 'text-emerald-600' : 'text-rose-600'}">
+              ${isPositive ? '+' : ''}${gainPercent.toFixed(2)}%
+            </span>
+          </td>
+          <td class="py-3.5 px-4 text-slate-500 text-[11px]">${row.remarks}</td>
+          <td class="py-3.5 px-3 text-center">
+            <button onclick="removeMfRow(${row.id})" class="p-1 hover:bg-rose-50 text-slate-300 hover:text-rose-600 rounded transition-colors" title="Delete">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('mf-stats-line').innerHTML = `
+        ${mfList.length} line(s) · <span class="text-emerald-600 font-semibold">${pricedCount} priced</span> · 0 not found
+      `;
+      lucide.createIcons();
+    }
+
+    function removeMfRow(id) {
+      mfList = mfList.filter(item => item.id !== id);
+      renderMfTable();
+      showToast('Fund removed', 'info');
+    }
+
+    function clearMfTable() {
+      mfList = [];
+      renderMfTable();
+      showToast('Mutual fund table cleared', 'info');
+    }
+
+    function fetchMfPrices() {
+      showToast('AMFI NAV feeds updated.', 'success');
+      mfList.forEach(r => r.isPriced = true);
+      renderMfTable();
+    }
+
+    function formatDateDisplay(d) {
+      if (!d) return '-';
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const parts = d.split('-');
+      if (parts.length === 3) {
+        if (parts[0].length === 4) {
+          const yr = parts[0];
+          const m = parseInt(parts[1], 10) - 1;
+          const day = parts[2];
+          return `${day}-${months[m] || parts[1]}-${yr}`;
+        }
+      }
+      return d;
+    }
+
+    function downloadSampleTemplate(type) {
+      let csv = "data:text/csv;charset=utf-8,";
+      let name = "template.csv";
+      if (type === 'equity') {
+        csv += "Script (NSE/BSE symbol),Exchange (NSE or BSE),Date (DD-MM-YYYY)\nRELIANCE,NSE,14-05-2003\nTCS,BSE,25-08-2004\nASHOKLEY,NSE,07-10-2026\n";
+        name = "TaxONaut_Equity_Template.csv";
+      } else {
+        csv += "Scheme Code or Name,Date (DD-MM-YYYY)\n101762,02-03-2015\nHDFC Flexi Cap Fund Growth,01-04-2010\n";
+        name = "TaxONaut_MF_Template.csv";
+      }
+      const uri = encodeURI(csv);
+      const a = document.createElement("a");
+      a.href = uri;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function handleEquityFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const lines = evt.target.result.split('\n');
+        let count = 0;
+        lines.forEach((line, idx) => {
+          if (!line.trim() || idx === 0 && line.toLowerCase().includes('script')) return;
+          const [sym, ex, dt] = line.split(',').map(s => s ? s.trim() : '');
+          if (sym) {
+            const found = STOCK_DATABASE.find(s => s.symbol === sym.toUpperCase()) || {
+              name: `${sym.toUpperCase()} LTD`,
+              symbol: sym.toUpperCase(),
+              exchange: ex || "NSE",
+              basePrice: 500,
+              histOpen: 240,
+              histClose: 245,
+              histHigh: 250,
+              histLow: 238,
+              remarks: "CSV Imported"
+            };
+            equityList.push({
+              id: Date.now() + Math.random(),
+              name: found.name,
+              symbol: found.symbol,
+              exchange: ex || "NSE",
+              date: dt || "2026-10-07",
+              open: found.histOpen,
+              close: found.histClose,
+              high: found.histHigh,
+              low: found.histLow,
+              todayClose: found.basePrice,
+              isPriced: true,
+              remarks: found.remarks
+            });
+            count++;
+          }
+        });
+        renderEquityTable();
+        showToast(`Imported ${count} rows from CSV!`, 'success');
+      };
+      reader.readAsText(file);
+    }
+
+    function handleMfFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const lines = evt.target.result.split('\n');
+        let count = 0;
+        lines.forEach((line, idx) => {
+          if (!line.trim() || idx === 0 && line.toLowerCase().includes('scheme')) return;
+          const [c, dt] = line.split(',').map(s => s ? s.trim() : '');
+          if (c) {
+            const found = MF_DATABASE.find(m => m.code === c || m.name.toLowerCase().includes(c.toLowerCase())) || {
+              code: isNaN(c) ? "109921" : c,
+              name: isNaN(c) ? c : `AMFI Scheme ${c}`,
+              category: "Equity Growth",
+              baseNav: 130.50,
+              histNav: 48.00,
+              remarks: "Imported"
+            };
+            mfList.push({
+              id: Date.now() + Math.random(),
+              code: found.code,
+              name: found.name,
+              category: found.category,
+              date: dt || "2018-01-31",
+              histNav: found.histNav,
+              todayNav: found.baseNav,
+              isPriced: true,
+              remarks: found.remarks
+            });
+            count++;
+          }
+        });
+        renderMfTable();
+        showToast(`Imported ${count} mutual funds from CSV!`, 'success');
+      };
+      reader.readAsText(file);
+    }
+
+    function exportToExcel(type) {
+      let csv = "data:text/csv;charset=utf-8,";
+      let name = "";
+      if (type === 'equity') {
+        if (!equityList.length) { showToast('No equity rows to export', 'error'); return; }
+        csv += "#,Script,Symbol,Exchange,Date,Opening,Closing,High,Low,Today Closing,Difference,Remarks\n";
+        equityList.forEach((r, i) => {
+          csv += `"${i+1}","${r.name}","${r.symbol}","${r.exchange}","${r.date}","${r.open}","${r.close}","${r.high}","${r.low}","${r.todayClose}","${(r.todayClose - r.close).toFixed(2)}","${r.remarks}"\n`;
+        });
+        name = "TaxONaut_Equity_Report.csv";
+      } else {
+        if (!mfList.length) { showToast('No fund rows to export', 'error'); return; }
+        csv += "#,Code,Scheme Name,Category,Date,Hist NAV,Today NAV,Gain %\n";
+        mfList.forEach((r, i) => {
+          csv += `"${i+1}","${r.code}","${r.name}","${r.category}","${r.date}","${r.histNav}","${r.todayNav}","${(((r.todayNav - r.histNav)/r.histNav)*100).toFixed(2)}%"\n`;
+        });
+        name = "TaxONaut_Mutual_Funds_Report.csv";
+      }
+      const uri = encodeURI(csv);
+      const a = document.createElement("a");
+      a.href = uri;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast(`Exported ${name}`, 'success');
+    }
+
+    function printOrExportPDF() { window.print(); }
+
+    function setForecastHorizon(h) {
+      currentForecastHorizon = h;
+      document.querySelectorAll('.horizon-btn').forEach(btn => {
+        if (btn.getAttribute('data-horizon') === h) {
+          btn.className = "horizon-btn py-1.5 text-center text-xs font-bold rounded-lg transition-all bg-white text-purple-700 shadow-sm";
+        } else {
+          btn.className = "horizon-btn py-1.5 text-center text-xs font-bold rounded-lg transition-all text-slate-600 hover:text-slate-900";
+        }
+      });
+      runAiSimulation();
+    }
+
+    function updateSentimentSlider(val) {
+      const labels = {
+        '1': 'Extreme Bearish (-12%)',
+        '2': 'Mild Bearish (-5%)',
+        '3': 'Neutral Drift (+0%)',
+        '4': 'Bullish (+6%)',
+        '5': 'Hyper Bullish (+15%)'
+      };
+      const colors = {
+        '1': 'text-rose-600',
+        '2': 'text-rose-500',
+        '3': 'text-slate-600',
+        '4': 'text-emerald-600',
+        '5': 'text-purple-600'
+      };
+      const el = document.getElementById('sentiment-label');
+      el.innerText = labels[val];
+      el.className = `text-xs font-extrabold ${colors[val]}`;
+      runAiSimulation();
+    }
+
+    function runAiSimulation() {
+      const assetKey = document.getElementById('ai-asset-select').value;
+      const sentimentVal = parseInt(document.getElementById('sentiment-slider').value);
+
+      let currentPrice = 145.02;
+      let assetName = "Ashok Leyland Ltd (ASHOKLEY)";
+      let exchange = "NSE Listed";
+
+      const foundStock = STOCK_DATABASE.find(s => s.symbol === assetKey);
+      if (foundStock) {
+        currentPrice = foundStock.basePrice;
+        assetName = `${foundStock.name} (${foundStock.symbol})`;
+        exchange = `${foundStock.exchange} Listed`;
+      } else {
+        const foundMf = MF_DATABASE.find(m => m.name.toLowerCase().includes(assetKey.toLowerCase()) || m.code === assetKey);
+        if (foundMf) {
+          currentPrice = foundMf.baseNav;
+          assetName = foundMf.name;
+          exchange = `AMFI Code: ${foundMf.code}`;
+        }
+      }
+
+      document.getElementById('chart-asset-title').innerText = assetName;
+      document.getElementById('chart-exchange-badge').innerText = exchange;
+
+      let periods = 6;
+      let timeLabels = [];
+      let cagrMultiplier = 1.15;
+      const biasAdjust = (sentimentVal - 3) * 0.04;
+
+      if (currentForecastHorizon === '3M') {
+        timeLabels = ['Day 0', 'Wk 2', 'Wk 4', 'Wk 6', 'Wk 8', 'Wk 10', '3M Target'];
+        cagrMultiplier = 1.04 + biasAdjust * 0.3;
+      } else if (currentForecastHorizon === '6M') {
+        timeLabels = ['Month 0', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', '6M Target'];
+        cagrMultiplier = 1.09 + biasAdjust * 0.6;
+      } else if (currentForecastHorizon === '1Y') {
+        timeLabels = ['Q0 (Today)', 'Q1', 'Q2', 'Q3', 'Q4 (1Y Forecast)'];
+        cagrMultiplier = 1.22 + biasAdjust;
+      } else {
+        timeLabels = ['Year 0', 'Year 0.5', 'Year 1.0', 'Year 1.5', 'Year 2.0', 'Year 2.5', 'Year 3.0'];
+        cagrMultiplier = 1.65 + biasAdjust * 2.5;
+      }
+
+      const historyPrices = [];
+      const medianPath = [];
+      const upperBound = [];
+      const lowerBound = [];
+
+      const n = timeLabels.length;
+      for (let i = 0; i < n; i++) {
+        const progress = i / (n - 1);
+        const expectedVal = currentPrice * (1 + (cagrMultiplier - 1) * progress);
+        const spread = currentPrice * (0.05 + 0.14 * progress);
+
+        medianPath.push(parseFloat(expectedVal.toFixed(2)));
+        upperBound.push(parseFloat((expectedVal + spread).toFixed(2)));
+        lowerBound.push(parseFloat((expectedVal - spread).toFixed(2)));
+
+        if (i === 0) historyPrices.push(currentPrice);
+        else historyPrices.push(null);
+      }
+
+      const targetVal = medianPath[medianPath.length - 1];
+      const totalReturn = (((targetVal - currentPrice) / currentPrice) * 100).toFixed(1);
+
+      document.getElementById('ai-metric-current').innerText = `₹${currentPrice.toFixed(2)}`;
+      document.getElementById('ai-metric-target').innerText = `₹${targetVal.toFixed(2)}`;
+      document.getElementById('ai-metric-cagr').innerText = `${totalReturn >= 0 ? '+' : ''}${totalReturn}%`;
+
+      if (chartInstance) {
+        chartInstance.data.labels = timeLabels;
+        chartInstance.data.datasets[0].data = historyPrices;
+        chartInstance.data.datasets[1].data = medianPath;
+        chartInstance.data.datasets[2].data = upperBound;
+        chartInstance.data.datasets[3].data = lowerBound;
+        chartInstance.update();
+      }
+
+      const taxSummary = document.getElementById('ai-tax-summary');
+      if (assetKey === 'ASHOKLEY') {
+        taxSummary.innerText = "Sec 112A Grandfathered acquisition base: ₹149.20. Current drift suggests minimal taxable LTCG if liquidated before next quarter, maximizing Section 54F exemption.";
+      } else {
+        taxSummary.innerText = `Projected return of ${totalReturn}% falls within normal capital gains band. Tax-loss harvesting is recommended if seasonal volatility breaches ₹${lowerBound[lowerBound.length - 1]}.`;
+      }
+    }
+
+    function initAiChart() {
+      const ctx = document.getElementById('aiForecastChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Q0 (Today)', 'Q1', 'Q2', 'Q3', 'Q4 (1Y Forecast)'],
+          datasets: [
+            {
+              label: 'Historical / Spot',
+              data: [145.02, null, null, null, null],
+              borderColor: '#0b192c',
+              backgroundColor: '#0b192c',
+              borderWidth: 3,
+              pointRadius: 6,
+              pointHoverRadius: 8
+            },
+            {
+              label: 'AI Median Projection',
+              data: [145.02, 153.20, 161.40, 169.80, 178.50],
+              borderColor: '#9333ea',
+              borderDash: [5, 5],
+              borderWidth: 2.5,
+              pointRadius: 4,
+              fill: false
+            },
+            {
+              label: 'Upper Confidence (+85%)',
+              data: [145.02, 161.00, 174.50, 187.00, 201.20],
+              borderColor: 'rgba(168, 85, 247, 0.4)',
+              borderWidth: 1,
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              label: 'Lower Confidence (-85%)',
+              data: [145.02, 146.00, 149.20, 153.10, 158.40],
+              borderColor: 'rgba(168, 85, 247, 0.4)',
+              borderWidth: 1,
+              pointRadius: 0,
+              backgroundColor: 'rgba(147, 51, 234, 0.08)',
+              fill: '-1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0b192c',
+              titleFont: { family: 'Inter', size: 12, weight: 'bold' },
+              bodyFont: { family: 'Inter', size: 11 },
+              padding: 10,
+              cornerRadius: 8,
+              callbacks: {
+                label: function(context) {
+                  if (context.parsed.y !== null) {
+                    return ` ${context.dataset.label}: ₹${context.parsed.y.toFixed(2)}`;
+                  }
+                  return '';
+                }
+              }
+            }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 11 } } },
+            y: {
+              grid: { color: '#f1f5f9' },
+              ticks: {
+                font: { family: 'Inter', size: 11 },
+                callback: function(val) { return '₹' + val; }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderEquityTable();
+      renderMfTable();
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#equity-search-input') && !e.target.closest('#equity-suggestions')) {
+          const el = document.getElementById('equity-suggestions');
+          if (el) el.classList.add('hidden');
+        }
+        if (!e.target.closest('#mf-search-input') && !e.target.closest('#mf-suggestions')) {
+          const el = document.getElementById('mf-suggestions');
+          if (el) el.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
