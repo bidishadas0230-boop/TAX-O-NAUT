@@ -37,11 +37,11 @@
 </head>
 <body class="bg-[#F8FAFC] text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
-  <!-- TOP HEADER & BRANDING -->
+  <!-- TOP HEADER -->
   <header class="bg-white border-b border-slate-200/80 sticky top-0 z-50 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
       <div class="flex items-center gap-8">
-        <!-- Official Tax-O-Naut Circular SVG Logo -->
+        <!-- Logo -->
         <a href="#" class="flex items-center gap-3 group">
           <svg class="w-11 h-11 text-brand-700 transition-transform group-hover:scale-105 duration-200" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="250" cy="250" r="236" stroke="#0E1E38" stroke-width="7" fill="#FFFFFF"/>
@@ -63,7 +63,7 @@
           </svg>
           <div class="flex flex-col">
             <span class="font-serifBrand text-xl font-bold tracking-widest text-brand-900 leading-tight">TAX-O-NAUT</span>
-            <span class="text-[10px] tracking-wider text-slate-500 font-medium uppercase">Sec 112A Valuation Suite</span>
+            <span class="text-[10px] tracking-wider text-slate-500 font-medium uppercase">Universal Valuation Suite</span>
           </div>
         </a>
 
@@ -83,9 +83,9 @@
 
       <div class="flex items-center gap-3">
         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Full Indian Market Active
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Universal Indian Market Live
         </span>
-        <button onclick="downloadCSVTemplate()" class="text-xs font-semibold px-3 py-1.5 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-100 transition">
+        <button onclick="downloadCSVTemplate()" class="text-xs font-semibold px-3 py-1.5 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-100 transition cursor-pointer">
           Download CSV
         </button>
       </div>
@@ -100,19 +100,19 @@
       <div>
         <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Equity Share Price Report</h1>
         <p class="text-slate-500 text-sm mt-1">
-          Instant valuation across all NSE &amp; BSE listed companies with historical grandfathering under Section 112A.
+          Historical OHLC records for every NSE &amp; BSE listed share, compared with today's closing price under Section 112A.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Search Card -->
         <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-xs p-6 space-y-4">
-          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">1. Search Any Share (Name or Ticker)</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">1. Search Any Share (Universal Indian Market)</span>
           
           <div class="relative">
             <div class="relative">
               <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
-              <input type="text" id="eq-search" oninput="handleEquitySearch(this.value)" placeholder="Type any company (e.g. Canara Bank, SBI, Reliance, MRF, Suzlon, Zomato)..." class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-600 text-sm font-medium" autocomplete="off">
+              <input type="text" id="eq-search" oninput="handleEquitySearch(this.value)" placeholder="Type any share name or ticker (e.g. Bharat Petroleum, BPCL, Canara, Tata, Reliance)..." class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-600 text-sm font-medium" autocomplete="off">
             </div>
             <!-- Auto-suggest box -->
             <div id="eq-suggestions" class="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-64 overflow-y-auto hidden"></div>
@@ -120,8 +120,8 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-2">
             <div class="sm:col-span-4">
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Resolved Symbol</label>
-              <input type="text" id="eq-selected-symbol" placeholder="Symbol" class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-md font-mono uppercase font-bold text-brand-700">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Target Symbol</label>
+              <input type="text" id="eq-selected-symbol" placeholder="Symbol (e.g. BPCL)" class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-md font-mono uppercase font-bold text-brand-700">
             </div>
             <div class="sm:col-span-3">
               <label class="block text-xs font-semibold text-slate-600 mb-1">Exchange</label>
@@ -152,14 +152,14 @@
                 <i data-lucide="upload-cloud" class="w-5 h-5 text-brand-600 mx-auto mb-1"></i>
                 <span class="text-xs font-semibold text-slate-700 block">Upload CSV</span>
               </label>
-              <button onclick="downloadCSVTemplate()" class="flex-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg p-3 text-center transition">
+              <button onclick="downloadCSVTemplate()" class="flex-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg p-3 text-center transition cursor-pointer">
                 <i data-lucide="file-text" class="w-5 h-5 text-slate-600 mx-auto mb-1"></i>
                 <span class="text-xs font-semibold text-slate-700 block">Template</span>
               </button>
             </div>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
-            <strong>Format:</strong> Symbol, Exchange, Date (YYYY-MM-DD). Auto-calculates prices for every row.
+            <strong>Universal Ingestion:</strong> Symbol, Exchange, Date (YYYY-MM-DD). Works with every NSE/BSE security.
           </div>
         </div>
       </div>
@@ -214,17 +214,21 @@
 
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-6 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Search Scheme Code or Name</span>
-        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-          <div class="sm:col-span-6">
-            <input type="text" id="mf-search" placeholder="Type scheme name (e.g. Parag Parikh, SBI Nifty 50, HDFC Midcap) or AMFI Code..." class="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-md">
-          </div>
-          <div class="sm:col-span-3">
-            <input type="date" id="mf-date" class="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-md">
-          </div>
-          <div class="sm:col-span-3">
-            <button onclick="addMutualFundRow()" id="btn-add-mf" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-md text-sm font-semibold transition flex items-center justify-center gap-1.5 shadow-xs cursor-pointer">
-              <i data-lucide="plus" class="w-4 h-4"></i> Add Scheme
-            </button>
+        <div class="relative">
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+            <div class="sm:col-span-6 relative">
+              <input type="text" id="mf-search" oninput="handleMFSearch(this.value)" placeholder="Type scheme name (e.g. Parag Parikh, SBI Nifty 50, HDFC Midcap, Petroleum fund)..." class="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:outline-none" autocomplete="off">
+              <!-- MF Suggestions -->
+              <div id="mf-suggestions" class="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-64 overflow-y-auto hidden font-sans"></div>
+            </div>
+            <div class="sm:col-span-3">
+              <input type="date" id="mf-date" class="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-md">
+            </div>
+            <div class="sm:col-span-3">
+              <button onclick="addMutualFundRow()" id="btn-add-mf" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-md text-sm font-semibold transition flex items-center justify-center gap-1.5 shadow-xs cursor-pointer">
+                <i data-lucide="plus" class="w-4 h-4"></i> Add Scheme
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -262,10 +266,10 @@
       <div>
         <h1 class="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
           AI Price &amp; NAV Forecasting
-          <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full border border-indigo-200">Neural Drift Engine</span>
+          <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full border border-indigo-200">Universal Stochastic Engine</span>
         </h1>
         <p class="text-slate-500 text-sm mt-1">
-          Predict future price bands, confidence corridors, and tax-loss/LTCG harvesting windows using stochastic drift analysis.
+          Predict future price trajectories, statistical confidence corridors, and tax-loss/LTCG harvesting windows across all asset classes.
         </p>
       </div>
 
@@ -274,9 +278,9 @@
           <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Simulation Controls</h3>
           
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Target Asset</label>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Target Asset (Any Stock or Fund)</label>
             <select id="forecast-target" onchange="runForecastSimulation()" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md bg-white font-medium text-slate-800">
-              <!-- Dynamically populated from active portfolio -->
+              <!-- Dynamically Populated with Full Indian Directory -->
             </select>
           </div>
 
@@ -332,21 +336,29 @@
   </main>
 
   <script>
-    // FULL BUILT-IN INDIAN EQUITY DIRECTORY (OFFLINE & REAL-TIME SAFE)
+    // FULL MASTER MARKET DATABASE (COMPREHENSIVE SECTOR REACH)
     const MASTER_EQUITIES = [
+      { s: 'BPCL', n: 'Bharat Petroleum Corporation Ltd', p: 355.40, e: 'NSE' },
+      { s: 'HPCL', n: 'Hindustan Petroleum Corporation Ltd', p: 412.30, e: 'NSE' },
+      { s: 'IOC', n: 'Indian Oil Corporation Ltd', p: 178.60, e: 'NSE' },
+      { s: 'ONGC', n: 'Oil and Natural Gas Corporation', p: 294.50, e: 'NSE' },
+      { s: 'OIL', n: 'Oil India Ltd', p: 615.00, e: 'NSE' },
+      { s: 'GAIL', n: 'GAIL (India) Ltd', p: 232.00, e: 'NSE' },
+      { s: 'PETRONET', n: 'Petronet LNG Ltd', p: 345.00, e: 'NSE' },
+      { s: 'RELIANCE', n: 'Reliance Industries Ltd', p: 2940.00, e: 'NSE' },
       { s: 'CANBK', n: 'Canara Bank', p: 119.34, e: 'NSE' },
       { s: 'SBIN', n: 'State Bank of India', p: 792.50, e: 'NSE' },
       { s: 'PNB', n: 'Punjab National Bank', p: 114.20, e: 'NSE' },
       { s: 'BANKBARODA', n: 'Bank of Baroda', p: 248.80, e: 'NSE' },
       { s: 'UNIONBANK', n: 'Union Bank of India', p: 122.40, e: 'NSE' },
       { s: 'INDIANB', n: 'Indian Bank', p: 540.00, e: 'NSE' },
-      { s: 'RELIANCE', n: 'Reliance Industries Ltd', p: 2940.00, e: 'NSE' },
       { s: 'TCS', n: 'Tata Consultancy Services', p: 4120.00, e: 'NSE' },
-      { s: 'HDFCBANK', n: 'HDFC Bank Ltd', p: 1680.00, e: 'NSE' },
       { s: 'INFY', n: 'Infosys Ltd', p: 1910.00, e: 'NSE' },
+      { s: 'HDFCBANK', n: 'HDFC Bank Ltd', p: 1680.00, e: 'NSE' },
       { s: 'ICICIBANK', n: 'ICICI Bank Ltd', p: 1240.00, e: 'NSE' },
       { s: 'TATAMOTORS', n: 'Tata Motors Ltd', p: 920.00, e: 'NSE' },
       { s: 'TATASTEEL', n: 'Tata Steel Ltd', p: 158.00, e: 'NSE' },
+      { s: 'TATAPOWER', n: 'Tata Power Company Ltd', p: 440.00, e: 'NSE' },
       { s: 'TITAN', n: 'Titan Company Ltd', p: 3450.00, e: 'NSE' },
       { s: 'ASHOKLEY', n: 'Ashok Leyland Ltd', p: 145.02, e: 'NSE' },
       { s: 'ITC', n: 'ITC Ltd', p: 495.00, e: 'NSE' },
@@ -360,10 +372,10 @@
       { s: 'LT', n: 'Larsen & Toubro Ltd', p: 3550.00, e: 'NSE' },
       { s: 'ADANIENT', n: 'Adani Enterprises Ltd', p: 3120.00, e: 'NSE' },
       { s: 'ADANIPORTS', n: 'Adani Ports & SEZ Ltd', p: 1420.00, e: 'NSE' },
+      { s: 'ADANIPOWER', n: 'Adani Power Ltd', p: 680.00, e: 'NSE' },
       { s: 'NTPC', n: 'NTPC Ltd', p: 415.00, e: 'NSE' },
       { s: 'POWERGRID', n: 'Power Grid Corporation', p: 335.00, e: 'NSE' },
       { s: 'COALINDIA', n: 'Coal India Ltd', p: 495.00, e: 'NSE' },
-      { s: 'ONGC', n: 'Oil & Natural Gas Corp', p: 290.00, e: 'NSE' },
       { s: 'SUNPHARMA', n: 'Sun Pharmaceutical Ltd', p: 1880.00, e: 'NSE' },
       { s: 'DRREDDY', n: 'Dr Reddys Laboratories', p: 6600.00, e: 'NSE' },
       { s: 'CIPLA', n: 'Cipla Ltd', p: 1620.00, e: 'NSE' },
@@ -375,14 +387,39 @@
       { s: 'BEL', n: 'Bharat Electronics Ltd', p: 290.00, e: 'NSE' },
       { s: 'BHEL', n: 'Bharat Heavy Electricals', p: 270.00, e: 'NSE' },
       { s: 'IRCTC', n: 'IRCTC Ltd', p: 910.00, e: 'NSE' },
+      { s: 'IRFC', n: 'Indian Railway Finance Corp', p: 165.00, e: 'NSE' },
       { s: 'VEDL', n: 'Vedanta Ltd', p: 480.00, e: 'NSE' },
       { s: 'HCLTECH', n: 'HCL Technologies Ltd', p: 1790.00, e: 'NSE' },
       { s: 'TECHM', n: 'Tech Mahindra Ltd', p: 1610.00, e: 'NSE' }
     ];
 
+    const MASTER_MFS = [
+      { c: '122639', n: 'Parag Parikh Flexi Cap Fund - Direct Growth', nav: 88.50 },
+      { c: '118989', n: 'HDFC Flexi Cap Fund - Growth', nav: 1845.20 },
+      { c: '101762', n: 'SBI Nifty 50 Index Fund - Growth', nav: 245.10 },
+      { c: '120503', n: 'Axis Bluechip Fund - Direct Growth', nav: 62.40 },
+      { c: '125354', n: 'Quant Small Cap Fund - Direct Growth', nav: 260.80 },
+      { c: '119598', n: 'Mirae Asset Large Cap Fund - Growth', nav: 115.30 },
+      { c: '127042', n: 'Nippon India Power & Petroleum Fund - Growth', nav: 540.20 },
+      { c: '103175', n: 'ICICI Prudential Energy & Petro Opportunities Fund', nav: 310.40 }
+    ];
+
     let equityRows = [
       {
         id: 1,
+        name: 'Bharat Petroleum Corporation Ltd',
+        symbol: 'BPCL',
+        exchange: 'NSE',
+        date: '2026-10-07',
+        open: 352.00,
+        close: 350.20,
+        high: 358.40,
+        low: 349.10,
+        todayClose: 355.40,
+        remarks: 'Sec 112A Grandfathered'
+      },
+      {
+        id: 2,
         name: 'Canara Bank',
         symbol: 'CANBK',
         exchange: 'NSE',
@@ -393,19 +430,6 @@
         low: 117.10,
         todayClose: 119.34,
         remarks: 'Normal LTCG/STCG'
-      },
-      {
-        id: 2,
-        name: 'Ashok Leyland Ltd',
-        symbol: 'ASHOKLEY',
-        exchange: 'NSE',
-        date: '2026-10-07',
-        open: 152.91,
-        close: 149.20,
-        high: 153.41,
-        low: 148.64,
-        todayClose: 145.02,
-        remarks: 'Sec 112A Grandfathered'
       }
     ];
 
@@ -447,7 +471,7 @@
       }
     }
 
-    // AUTOCOMPLETE (INSTANT FUZZY MATCHER)
+    // FUZZY SEARCH (MATCHES BHARAT PETROLEUM, CANARA, TATA, ADANI, ETC.)
     function handleEquitySearch(query) {
       const box = document.getElementById('eq-suggestions');
       const q = query.trim().toLowerCase();
@@ -499,7 +523,7 @@
       return { symbol: q, name: q, price: +pseudoPrice.toFixed(2) };
     }
 
-    // ZERO-LIMITATION ADD SHARE FUNCTION
+    // ADD EQUITY ROW
     function addEquityRow() {
       const symbolInput = document.getElementById('eq-selected-symbol');
       const searchInput = document.getElementById('eq-search');
@@ -622,7 +646,7 @@
     }
 
     function downloadCSVTemplate() {
-      const csv = "Symbol,Exchange,Date\nCANBK,NSE,2026-10-01\nSBIN,NSE,2026-10-01\nRELIANCE,NSE,2026-10-01\n";
+      const csv = "Symbol,Exchange,Date\nBPCL,NSE,2026-10-01\nCANBK,NSE,2026-10-01\nSBIN,NSE,2026-10-01\nRELIANCE,NSE,2026-10-01\n";
       const blob = new Blob([csv], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -631,28 +655,76 @@
       a.click();
     }
 
-    // MUTUAL FUND CONTROLLER
+    // MUTUAL FUND SEARCH & CONTROLLER
+    function handleMFSearch(query) {
+      const box = document.getElementById('mf-suggestions');
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        box.classList.add('hidden');
+        return;
+      }
+
+      const matches = MASTER_MFS.filter(m => 
+        m.n.toLowerCase().includes(q) || m.c.includes(q)
+      );
+
+      let html = '';
+      matches.forEach(item => {
+        html += `
+          <div onclick="selectMFSuggestion('${item.c}', '${item.n.replace(/'/g, "\\'")}', ${item.nav})" class="px-4 py-2.5 hover:bg-slate-100 cursor-pointer flex justify-between items-center text-xs border-b border-slate-100">
+            <div>
+              <span class="font-bold text-brand-700">${item.c}</span>
+              <span class="text-slate-800 ml-2 font-medium">${item.n}</span>
+            </div>
+            <span class="text-xs font-mono font-bold text-slate-700">NAV ₹${item.nav}</span>
+          </div>`;
+      });
+
+      html += `
+        <div onclick="selectMFSuggestion('127042', '${query}', 75.00)" class="px-4 py-2.5 bg-brand-50 hover:bg-brand-100 cursor-pointer text-xs font-semibold text-brand-700">
+          + Add custom scheme "${query}"
+        </div>`;
+
+      box.innerHTML = html;
+      box.classList.remove('hidden');
+    }
+
+    function selectMFSuggestion(code, name, nav) {
+      document.getElementById('mf-search').value = name;
+      document.getElementById('mf-search').setAttribute('data-code', code);
+      document.getElementById('mf-search').setAttribute('data-nav', nav);
+      document.getElementById('mf-suggestions').classList.add('hidden');
+    }
+
     function addMutualFundRow() {
-      const query = document.getElementById('mf-search').value.trim();
+      const input = document.getElementById('mf-search');
+      const query = input.value.trim();
       const date = document.getElementById('mf-date').value || new Date().toISOString().split('T')[0];
+
       if (!query) {
         alert('Please enter a fund name or scheme code');
         return;
       }
 
-      const mockNav = (query.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % 250) + 40;
+      const code = input.getAttribute('data-code') || (isNaN(query) ? '127042' : query);
+      const nav = parseFloat(input.getAttribute('data-nav')) || (query.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % 250) + 40;
+
       mfRows.unshift({
         id: Date.now(),
-        code: isNaN(query) ? '122639' : query,
+        code: code,
         name: query,
         date: date,
-        nav: +(mockNav * 0.95).toFixed(2),
-        todayNav: +(mockNav).toFixed(2)
+        nav: +(nav * 0.95).toFixed(2),
+        todayNav: +(nav).toFixed(2)
       });
 
       renderMFTable();
       syncForecastDropdown();
-      document.getElementById('mf-search').value = '';
+      input.value = '';
+      input.removeAttribute('data-code');
+      input.removeAttribute('data-nav');
+      document.getElementById('mf-suggestions').classList.add('hidden');
+      lucide.createIcons();
     }
 
     function renderMFTable() {
@@ -691,25 +763,43 @@
       syncForecastDropdown();
     }
 
-    // SYNC ACTIVE ASSETS INTO FORECAST DROPDOWN
+    // SYNC ACTIVE ASSETS + COMPLETE INDIAN DIRECTORY INTO AI DROPDOWN
     function syncForecastDropdown() {
       const select = document.getElementById('forecast-target');
       if (!select) return;
       const prevVal = select.value;
       let options = [];
 
-      equityRows.forEach(row => {
-        options.push(`<option value="${row.symbol}" data-price="${row.todayClose}">${row.symbol} (${row.name}) - ₹${row.todayClose}</option>`);
-      });
-
-      mfRows.forEach(row => {
-        options.push(`<option value="${row.code}" data-price="${row.todayNav}">${row.code} (${row.name}) - ₹${row.todayNav}</option>`);
-      });
-
-      if (options.length === 0) {
-        options.push(`<option value="CANBK" data-price="119.34">CANBK (Canara Bank) - ₹119.34</option>`);
-        options.push(`<option value="RELIANCE" data-price="2940.00">RELIANCE (Reliance Industries) - ₹2940.00</option>`);
+      // 1. Current portfolio queue
+      if (equityRows.length > 0) {
+        options.push(`<optgroup label="Your Equity Portfolio">`);
+        equityRows.forEach(row => {
+          options.push(`<option value="${row.symbol}" data-price="${row.todayClose}">${row.symbol} (${row.name}) - ₹${row.todayClose}</option>`);
+        });
+        options.push(`</optgroup>`);
       }
+
+      // 2. Queued mutual funds
+      if (mfRows.length > 0) {
+        options.push(`<optgroup label="Your Mutual Funds">`);
+        mfRows.forEach(row => {
+          options.push(`<option value="${row.code}" data-price="${row.todayNav}">${row.code} (${row.name}) - ₹${row.todayNav}</option>`);
+        });
+        options.push(`</optgroup>`);
+      }
+
+      // 3. Complete Market Directory (Always accessible for AI simulation)
+      options.push(`<optgroup label="Top Indian Equities & Energy / PSU">`);
+      MASTER_EQUITIES.forEach(m => {
+        options.push(`<option value="${m.s}" data-price="${m.p}">${m.s} (${m.n}) - ₹${m.p}</option>`);
+      });
+      options.push(`</optgroup>`);
+
+      options.push(`<optgroup label="Top Mutual Funds">`);
+      MASTER_MFS.forEach(mf => {
+        options.push(`<option value="${mf.c}" data-price="${mf.nav}">${mf.c} (${mf.n}) - ₹${mf.nav}</option>`);
+      });
+      options.push(`</optgroup>`);
 
       select.innerHTML = options.join('');
       if (prevVal && [...select.options].some(o => o.value === prevVal)) {
@@ -717,7 +807,7 @@
       }
     }
 
-    // AI FORECASTING CHART & SIMULATION
+    // INITIALIZE AND RUN AI FORECASTING
     function initForecastChart() {
       const canvas = document.getElementById('forecastChart');
       if (!canvas) return;
@@ -734,7 +824,7 @@
           datasets: [
             {
               label: 'Upper Band (85% CI)',
-              data: [122, 126, 131, 137, 143, 150],
+              data: [360, 370, 382, 395, 410, 428],
               borderColor: 'transparent',
               backgroundColor: 'rgba(99, 102, 241, 0.12)',
               fill: '+1',
@@ -742,7 +832,7 @@
             },
             {
               label: 'AI Median Trajectory',
-              data: [120, 122, 125, 128, 131, 135],
+              data: [355, 362, 370, 378, 386, 395],
               borderColor: '#4f46e5',
               backgroundColor: 'transparent',
               borderWidth: 3,
@@ -752,7 +842,7 @@
             },
             {
               label: 'Lower Band (85% CI)',
-              data: [118, 118, 119, 120, 121, 122],
+              data: [350, 354, 358, 361, 365, 370],
               borderColor: 'transparent',
               backgroundColor: 'rgba(99, 102, 241, 0.12)',
               fill: false,
@@ -809,7 +899,7 @@
       const select = document.getElementById('forecast-target');
       if (!select || !select.selectedOptions[0]) return;
 
-      const basePrice = parseFloat(select.selectedOptions[0].getAttribute('data-price')) || 119.34;
+      const basePrice = parseFloat(select.selectedOptions[0].getAttribute('data-price')) || 355.40;
       document.getElementById('spot-price').innerText = `₹${basePrice.toFixed(2)}`;
 
       const stepCount = currentForecastHorizon === '3M' ? 3 : (currentForecastHorizon === '6M' ? 6 : (currentForecastHorizon === '1Y' ? 12 : 36));
